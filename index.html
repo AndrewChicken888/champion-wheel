@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<head>
+	<title>Paladins Special Randomizer</title>
+	<script type="text/javascript" src="code.js"></script>
+	<link rel="stylesheet" href="style.css"/>
+	<link rel="shortcut icon" href="icon.PNG"/>
+</head>
+<body onload="init()">
+	<div id="header"><h1 id="headerText">Paladins Special Randomizer</h1></div>
+	<div id="main">
+		<p>This randomizer lets you choose among a specific pool of champions you select! This randomizer is updated to include Omen.</p><br>
+		<button id="randomize" onclick="randomize()" type="button"><img id="championImage" src="DefaultChamp.png"/></button>
+		<p id="randomError" class="error"></p>
+		<br>
+		<p>Input a new champion:
+		<input id="inputNewChampion" placeholder="Add a champion" autofocus></input>
+		<button id="buttonNewChampion" onclick="addChampion()" type="submit" value="Submit">Submit</button></p>
+		<p id="inputError" class="error"></p>
+		<p>Remove a champion:
+		<input id="inputRemoveChampion" placeholder="Remove a champion"></input>
+		<button id="buttonRemoveChampion" onclick="subChampion()" type="submit">Submit</button></p>
+		<p id="removeError" class="error"></p>
+		<div id="champsList"><p>There are no champions in the pool.</p></div>
+	</div>
+	<div id="footer">
+		<a href="https://www.youtube.com/AndrewChicken" target="_blank" rel="noopener noreferrer">YouTube</a>
+		<a href="https://www.twitch.tv/andrewchicken" target="_blank" rel="noopener noreferrer">Twitch</a>
+		<a href="https://discord.com/invite/fnjV3nV" target="_blank" rel="noopener noreferrer">Discord</a>
+		<a onclick="credits()">Credits</a>
+	</div>
+</body>

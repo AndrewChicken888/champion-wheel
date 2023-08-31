@@ -1,0 +1,10 @@
+Paladins Special Randomizer Version Log
+
+1.0.0 - 8/30/2023:
+Constructed a functioning version of the application. This includes the features of adding and removing champions from the pool, safety measures to prevent duplicate or fake champions, and the randomizing feature. This version does not have a pretty UI, but is otherwise completely functioning.
+
+1.1.0 - 8/30/2023:
+Added UI elements to make the webpage pretty and user-friendly.
+
+1.2.0 - 8/31/2023:
+Added animations and sound effects. Also added a credits menu and fixed a bug that would crash the website if only one champion was in the pool.
