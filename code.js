@@ -2,6 +2,8 @@
 
 //Variables containing data for the randomizer
 var championRepository = ["Androxus", "Ash", "Atlas", "Azaan", "Barik", "Betty la Bomba", "Bomb King", "Buck", "Cassie", "Caspian", "Corvus", "Dredge", "Drogoz", "Evie", "Fernando", "Furia", "Grohk", "Grover", "Imani", "Inara", "Io", "Jenos", "Kasumi", "Khan", "Kinessa", "Koga", "Lex", "Lian", "Lillith", "Maeve", "Makoa", "Mal'Damba", "Moji", "Nyx", "Octavia", "Omen", "Pip", "Raum", "Rei", "Ruckus", "Saati", "Seris", "Sha Lin", "Skye", "Strix", "Talus", "Terminus", "Tiberius", "Torvald", "Tyra", "Vatu", "VII", "Viktor", "Vivian", "Vora", "Willo", "Yagorath", "Ying", "Zhin"];
+var nicknameRepository = ["Andro", "Betty", "BK", "Fern", "Kin", "Nessa", "Lilly", "Lilith", "Lily", "Koa", "Mal Damba", "Damba", "Mal", "MalDamba", "Sati", "Sha", "ShaLin", "Term", "Tib", "Tibby", "Torv", "Va'u", "Vik", "Viv", "Yag", "Yago"];
+var nicknameLineup = ["Androxus", "Betty la Bomba", "Bomb King", "Fernando", "Kinessa", "Kinessa", "Lillith", "Lillith", "Lillith", "Makoa", "Mal'Damba", "Mal'Damba", "Mal'Damba", "Mal'Damba", "Saati", "Sha Lin", "Sha Lin", "Terminus", "Tiberius", "Tiberius", "Torvald", "Vatu", "Viktor", "Vivian", "Yagorath", "Yagorath"];
 var champions = [];
 var championsAlphabetical = [];
 var removeNumber;
@@ -15,6 +17,7 @@ var timerClock = -1;
 var timerChamp = 0;
 var oldTimerChamp = -1;
 var toggleCredits = false;
+var locked = false;
 
 //Media Variables
 var soundWindup = new Audio("Funnel.wav");
@@ -43,6 +46,19 @@ function animTimer() {
 		soundSelect.play();
 		document.getElementById("randomize").style.backgroundColor = "#FF0000";
 		document.getElementById("randomize").style.backgroundImage = "";
+		locked = false;
+		document.getElementById("buttonNewChampion").style.border = "2px solid #0D2533";
+		document.getElementById("buttonRemoveChampion").style.border = "2px solid #0D2533";
+		document.getElementById("inputNewChampion").style.borderBottom = "2px solid #FFFFFF";
+		document.getElementById("inputRemoveChampion").style.borderBottom = "2px solid #FFFFFF";
+		document.getElementById("buttonNewChampion").style.backgroundColor = "#18445e";
+		document.getElementById("buttonRemoveChampion").style.backgroundColor = "#18445e";
+		document.getElementById("inputNewChampion").style.setProperty("--color", "#18445e");
+		document.getElementById("inputRemoveChampion").style.setProperty("--color", "#18445e");
+		document.getElementById("inputNewChampion").style.setProperty("--focuscolor", "#0D2533");
+		document.getElementById("inputRemoveChampion").style.setProperty("--focuscolor", "#0D2533");
+		document.getElementById("buttonNewChampion").style.setProperty("--fontcolor", "#309bd9");
+		document.getElementById("buttonRemoveChampion").style.setProperty("--fontcolor", "#309bd9");
 	}
 }
 
@@ -70,51 +86,71 @@ function init() {
 
 //Add a champion to the randomizer pool.
 function addChampion() {
-	//Get the champion's name
-	champion = document.getElementById("inputNewChampion").value;
-	document.getElementById("inputNewChampion").value="";
-	//Check the champion name against the repository to ensure it's valid.
-	checkName(champion);
-	//Complete the addition if it is valid, otherwise throw the proper error.
-	if (matchRepos && !matchPool) {
-		champions.push(championRepository[champNumber]);
-		document.getElementById("inputError").innerHTML = "";
-		document.getElementById("randomError").innerHTML = "";
-		updateChamps();
-	} else if (matchRepos && matchPool) {
-		//If the champion is valid but is in the pool, then warn the user of a duplicate.
-		document.getElementById("inputError").innerHTML = "Error. This champion is already in the pool.";		
-	} else {
-		document.getElementById("inputError").innerHTML = "Error. Not a valid champion name.";
+	//If the system is not locked continue the function.
+	if (!locked) {
+		//Get the champion's name
+		champion = document.getElementById("inputNewChampion").value;
+		document.getElementById("inputNewChampion").value="";
+		//Check for nicknames
+		champion = checkNickname(champion);
+		//Check the champion name against the repository to ensure it's valid.
+		checkName(champion);
+		//Complete the addition if it is valid, otherwise throw the proper error.
+		if (matchRepos && !matchPool) {
+			champions.push(championRepository[champNumber]);
+			document.getElementById("inputError").innerHTML = "";
+			document.getElementById("randomError").innerHTML = "";
+			updateChamps();
+		} else if (matchRepos && matchPool) {
+			//If the champion is valid but is in the pool, then warn the user of a duplicate.
+			document.getElementById("inputError").innerHTML = "Error. This champion is already in the pool.";		
+		} else {
+			document.getElementById("inputError").innerHTML = "Error. Not a valid champion name.";
+		}
 	}
-	
 }
 
 //Remove a champion from the randomizer pool. 
 function subChampion() {
-	//Check if the champions pool is populated. If not, continue the function.
-	if (champions.length === 0) { 
-		document.getElementById("removeError").innerHTML = "Error. There are no more champions in the randomizer pool.";
-		return;
-	} else {
-		//Get the champion's name
-		champion = document.getElementById("inputRemoveChampion").value;
-		document.getElementById("inputRemoveChampion").value = "";
-		//Check the champion name against the repository to ensure it's valid.
-		checkName(champion);
-		//Complete the removal if it is valid, otherwise throw the proper error.
-		if (matchRepos && matchPool) {
-			champions.splice(removeNumber, 1);
-			document.getElementById("removeError").innerHTML = "";
-			updateChamps();
-		} else if (matchRepos && !matchPool) {
-			//If the champion is valid but is not in the pool, then an incorrect champion was input.
-			document.getElementById("removeError").innerHTML = "Error. This champion is not in the pool.";
+	//If the system is not locked continue the function.
+	if (!locked) {
+		//Check if the champions pool is populated. If not, continue the function.
+		if (champions.length === 0) { 
+			document.getElementById("removeError").innerHTML = "Error. There are no more champions in the randomizer pool.";
+			return;
 		} else {
-			//Otherwise, the input is an invalid name.
-			document.getElementById("removeError").innerHTML = "Error. Not a valid champion name.";
+			//Get the champion's name
+			champion = document.getElementById("inputRemoveChampion").value;
+			document.getElementById("inputRemoveChampion").value = "";
+			//Check for nicknames
+			champion = checkNickname(champion);
+			//Check the champion name against the repository to ensure it's valid.
+			checkName(champion);
+			//Complete the removal if it is valid, otherwise throw the proper error.
+			if (matchRepos && matchPool) {
+				champions.splice(removeNumber, 1);
+				document.getElementById("removeError").innerHTML = "";
+				updateChamps();
+			} else if (matchRepos && !matchPool) {
+				//If the champion is valid but is not in the pool, then an incorrect champion was input.
+				document.getElementById("removeError").innerHTML = "Error. This champion is not in the pool.";
+			} else {
+				//Otherwise, the input is an invalid name.
+				document.getElementById("removeError").innerHTML = "Error. Not a valid champion name.";
+			}
 		}
 	}
+}
+
+//Check a name against the repository of nicknames, and set it to the proper name if a nickname was submitted.
+function checkNickname(name) {
+	for (let y = nicknameRepository.length-1; y >= 0; y--) {
+		if (nicknameRepository[y].toLowerCase() === name.toLowerCase()) {
+			name = nicknameLineup[y];
+			y = -1;
+		}
+	}
+	return name;
 }
 
 //Check a name against the repository of names and 
@@ -185,23 +221,39 @@ function updateChamps() {
 
 //Randomize function
 function randomize() {
-	//If there are champions in the pool, randomize.
-	if (champions.length > 0) {
-		document.getElementById("randomError").innerHTML = "";
-		//Randomize once, then if the champion is the same as the previously selected champion, keep randomizing until that's not the case.
-		rand = Math.floor(Math.random()*champions.length);
-		if (champions.length != 1) {
-			while (rand === oldRand) {
-				rand = Math.floor(Math.random()*champions.length);
+	//If the system is not locked, continue with the function
+	if (!locked) {
+		//If there are champions in the pool, randomize.
+		if (champions.length > 0) {
+			document.getElementById("randomError").innerHTML = "";
+			//Randomize once, then if the champion is the same as the previously selected champion, keep randomizing until that's not the case.
+			rand = Math.floor(Math.random()*champions.length);
+			if (champions.length != 1) {
+				while (rand === oldRand) {
+					rand = Math.floor(Math.random()*champions.length);
+				}
 			}
+			oldRand = rand;
+			timerClock = 3200;
+			soundWindup.load();
+			soundWindup.play();
+			document.getElementById("randomize").style.backgroundImage = "url('Rainbow Gradient.gif')";
+			document.getElementById("buttonNewChampion").style.border = "2px solid #FF0000";
+			document.getElementById("buttonRemoveChampion").style.border = "2px solid #FF0000";
+			document.getElementById("inputNewChampion").style.borderBottom = "2px solid #FF0000";
+			document.getElementById("inputRemoveChampion").style.borderBottom = "2px solid #FF0000";
+			document.getElementById("buttonNewChampion").style.setProperty("--fontcolor", "#FF0000");
+			document.getElementById("buttonRemoveChampion").style.setProperty("--fontcolor", "#FF0000");
+			document.getElementById("buttonNewChampion").style.backgroundColor = "#550001";
+			document.getElementById("buttonRemoveChampion").style.backgroundColor = "#550001";
+			document.getElementById("inputNewChampion").style.setProperty("--color", "#550001");
+			document.getElementById("inputRemoveChampion").style.setProperty("--color", "#550001");
+			document.getElementById("inputNewChampion").style.setProperty("--focuscolor", "#300001");
+			document.getElementById("inputRemoveChampion").style.setProperty("--focuscolor", "#300001");
+			locked = true;
+		} else {
+			document.getElementById("randomError").innerHTML = "Error. No champions in the pool.";
 		}
-		oldRand = rand;
-		timerClock = 3200;
-		soundWindup.load();
-		soundWindup.play();
-		document.getElementById("randomize").style.backgroundImage = "url('Rainbow Gradient.gif')";
-	} else {
-		document.getElementById("randomError").innerHTML = "Error. No champions in the pool.";
 	}
 }
 

@@ -65,7 +65,8 @@ input {
 	border: none;
 	outline: none;
 
-    background-color:#18445e;
+	--color: #18445e;
+    background-color: var(--color);
     color:#FFF;
     white-space: nowrap;
     overflow:hidden;
@@ -77,12 +78,14 @@ input {
 }
 
 input:focus {
-	background-color:#0D2533;
+	--focuscolor: #0D2533;
+	background-color: var(--focuscolor);
 }
 
 button:hover {
 	background-color:#18445e;
-	color:#309bd9;
+	--fontcolor: #309bd9;
+	color: var(--fontcolor);
 	cursor:pointer;
 }
 label {
