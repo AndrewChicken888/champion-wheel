@@ -225,8 +225,10 @@ function credits() {
 			}
 		});
 		updateChamps();
-		document.getElementById("championImage").src = champions[rand] + ".png";
-		document.getElementById("randomize").style.backgroundColor = "#FF0000";
+		if (oldRand != -1) {
+			document.getElementById("championImage").src = champions[rand] + ".png";
+			document.getElementById("randomize").style.backgroundColor = "#FF0000";
+		}
 	} else {
 		toggleCredits = true;
 		document.getElementById("main").innerHTML = '<p>Version 1.2.0 designed by AndrewChicken</p><p>Sound effects from \'Sonic Mania\' by Sega</p><p>Champions and champion images from \'Paladins, Champions of the Realm\' by Evil Mojo Studios</p><button type="button" id="goBack" onclick="credits()">Back</button>';
