@@ -2,8 +2,8 @@
 
 //Variables containing data for the randomizer
 var championRepository = ["Androxus", "Ash", "Atlas", "Azaan", "Barik", "Betty la Bomba", "Bomb King", "Buck", "Cassie", "Caspian", "Corvus", "Dredge", "Drogoz", "Evie", "Fernando", "Furia", "Grohk", "Grover", "Imani", "Inara", "Io", "Jenos", "Kasumi", "Khan", "Kinessa", "Koga", "Lex", "Lian", "Lillith", "Maeve", "Makoa", "Mal'Damba", "Moji", "Nyx", "Octavia", "Omen", "Pip", "Raum", "Rei", "Ruckus", "Saati", "Seris", "Sha Lin", "Skye", "Strix", "Talus", "Terminus", "Tiberius", "Torvald", "Tyra", "Vatu", "VII", "Viktor", "Vivian", "Vora", "Willo", "Yagorath", "Ying", "Zhin"];
-var nicknameRepository = ["Andro", "Betty", "BK", "Fern", "Nando", "Kin", "Nessa", "Lilly", "Lilith", "Lily", "Koa", "Mal Damba", "Damba", "Mal", "MalDamba", "Sati", "Sha", "ShaLin", "Term", "Tib", "Tibby", "Torv", "Va'u", "Vik", "Viv", "Yag", "Yago"];
-var nicknameLineup = ["Androxus", "Betty la Bomba", "Bomb King", "Fernando", "Fernando", "Kinessa", "Kinessa", "Lillith", "Lillith", "Lillith", "Makoa", "Mal'Damba", "Mal'Damba", "Mal'Damba", "Mal'Damba", "Saati", "Sha Lin", "Sha Lin", "Terminus", "Tiberius", "Tiberius", "Torvald", "Vatu", "Viktor", "Vivian", "Yagorath", "Yagorath"];
+var nicknameRepository = ["Andro", "Betty", "BK", "Fern", "Nando", "Kin", "Nessa", "cheater", "Lilly", "Lilith", "Lily", "Koa", "Mal Damba", "Damba", "Mal", "MalDamba", "Sati", "Sha", "ShaLin", "Term", "Tib", "Tibby", "Torv", "Va'u", "Vik", "Viv", "Yag", "Yago"];
+var nicknameLineup = ["Androxus", "Betty la Bomba", "Bomb King", "Fernando", "Fernando", "Kinessa", "Kinessa", "Lex", "Lillith", "Lillith", "Lillith", "Makoa", "Mal'Damba", "Mal'Damba", "Mal'Damba", "Mal'Damba", "Saati", "Sha Lin", "Sha Lin", "Terminus", "Tiberius", "Tiberius", "Torvald", "Vatu", "Viktor", "Vivian", "Yagorath", "Yagorath"];
 var champions = [];
 var championsAlphabetical = [];
 var removeNumber;
