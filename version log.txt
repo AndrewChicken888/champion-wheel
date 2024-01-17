@@ -11,3 +11,6 @@ Added animations and sound effects. Also added a credits menu and fixed a bug th
 
 1.3.0 - 8/31/2023:
 Fixed a bug where users could input and remove champions while randomizing. Fixed a bug where users could randomize again while the randomizer was already working. Added lockout stages to input fields while randomizing. Added support for popular champion nicknames to be used in place of their real names.
+
+1.4.0 - 1/17/2024:
+Added an "Add All" and "Remove All" button for convenience. Added more nicknames. Fixed a bug regarding sound effects spilling over improperly on the Credits menu. Added a "Support Me!" hyperlink that sends the user to AndrewChicken's Nexus store.
