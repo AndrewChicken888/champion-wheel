@@ -223,3 +223,16 @@ label {
 	z-index: -1;
 	width: 100%;
 }
+
+#champRandom {
+	color: yellow;
+	font-size: 20px;
+	padding-left: 0px;
+	padding-right: 0;
+	/*font-family: 'Aachen';*/
+	text-decoration: underline;
+}
+
+#champRandom:hover {
+	color: #309bd9;
+}

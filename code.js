@@ -313,7 +313,7 @@ function credits() {
 	//If credits are on, turn them off and revert to the main menu. Restore the event listeners for the input fields. Otherwise, show credits.
 	if (toggleCredits) {
 		toggleCredits = false;
-		document.getElementById("main").innerHTML = '<p>This randomizer lets you choose among a specific pool of champions you select! This randomizer is updated to include Omen.</p><br><button id="randomize" onclick="randomize()" type="button"><img id="championImage" src="DefaultChamp.png"/></button><p id="randomError" class="error"></p><br><p>Input a new champion: <input id="inputNewChampion" placeholder="Add a champion" autofocus></input> <button id="buttonNewChampion" onclick="addChampion()" type="submit" value="Submit">Submit</button></p> <p id="inputError" class="error"></p> <p>Remove a champion: <input id="inputRemoveChampion" placeholder="Remove a champion"></input> <button id="buttonRemoveChampion" onclick="subChampion()" type="submit">Submit</button></p> <p id="removeError" class="error"></p><p><button id="buttonAddAll" onclick="addAll()" type="button">Add All</button> <button id="buttonRemoveAll" onclick="removeAll()" type="button">Remove All</button></p><div id="champsList"><p class="error">There are no champions in the pool.</p></div>';
+		document.getElementById("main").innerHTML = '<p>This randomizer lets you choose among a specific pool of champions you select! This randomizer is updated to include Omen.</p><p>Also try the <a id="champRandom" href="https://andrewchicken888.github.io/paladins-randomizer/" target="_blank" rel="noopener noreferrer">Paladins Randomizer!</a></p><br><button id="randomize" onclick="randomize()" type="button"><img id="championImage" src="DefaultChamp.png"/></button><p id="randomError" class="error"></p><br><p>Input a new champion: <input id="inputNewChampion" placeholder="Add a champion" autofocus></input> <button id="buttonNewChampion" onclick="addChampion()" type="submit" value="Submit">Submit</button></p> <p id="inputError" class="error"></p> <p>Remove a champion: <input id="inputRemoveChampion" placeholder="Remove a champion"></input> <button id="buttonRemoveChampion" onclick="subChampion()" type="submit">Submit</button></p> <p id="removeError" class="error"></p><p><button id="buttonAddAll" onclick="addAll()" type="button">Add All</button> <button id="buttonRemoveAll" onclick="removeAll()" type="button">Remove All</button></p><div id="champsList"><p class="error">There are no champions in the pool.</p></div>';
 		document.getElementById("inputNewChampion").addEventListener("keypress", function(event) {
 			if (event.key === "Enter") {
 				event.preventDefault();
@@ -334,6 +334,6 @@ function credits() {
 		}
 	} else {
 		toggleCredits = true;
-		document.getElementById("main").innerHTML = '<p>Version 1.4.0 designed by AndrewChicken</p><p>Sound effects from \'Sonic Mania\' by Sega</p><p>Champions and champion images from \'Paladins, Champions of the Realm\' by Evil Mojo Studios</p><button type="button" id="goBack" onclick="credits()">Back</button>';
+		document.getElementById("main").innerHTML = '<p>Version 1.4.1 designed by AndrewChicken</p><p>Sound effects from \'Sonic Mania\' by Sega</p><p>Champions and champion images from \'Paladins, Champions of the Realm\' by Evil Mojo Studios</p><button type="button" id="goBack" onclick="credits()">Back</button>';
 	}
 }

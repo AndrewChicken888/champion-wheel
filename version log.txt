@@ -14,3 +14,6 @@ Fixed a bug where users could input and remove champions while randomizing. Fixe
 
 1.4.0 - 1/17/2024:
 Added an "Add All" and "Remove All" button for convenience. Added more nicknames. Fixed a bug regarding sound effects spilling over improperly on the Credits menu. Added a "Support Me!" hyperlink that sends the user to AndrewChicken's Nexus store.
+
+1.4.1 - 1/17/2024:
+Included a link to the Paladins randomizer and updated site text.
